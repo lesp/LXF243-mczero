@@ -9,6 +9,8 @@ try:
     mc = minecraft.Minecraft.create()
     print("Connected to world")
     print("For help with the block numbers, type blocks() into the Python shell")
+    chat("For help with the block numbers, type blocks() into the Python shell")
+    print("For a list of all the commands type commands()")
 except:
     print("Connection Error, is Minecraft running?")
 
@@ -30,6 +32,12 @@ def setblock(blocktype):
 def cube(size,blocktype):
     x, y, z = mc.player.getPos()
     mc.setBlocks(x+1, y+1, z+1, x+size, y+size, z+size, blocktype)
+
+def hollow_cube(size):
+    x, y, z = mc.player.getPos()
+    mc.setBlocks(x+1, y+1, z+1, x+size, y+size, z+size, 57)
+    size = size - 2
+    mc.setBlocks(x+2, y+2, z+2, x+size, y+size, z+size, 0)
     
 def tnt_trail():
     x, y, z = mc.player.getPos()
@@ -44,6 +52,11 @@ def tnt_cube(size):
 def slab(l,w,blocktype):
     x, y, z = mc.player.getPos()
     mc.setBlocks(x+1, y+1, z+1, x+w, y+1, z+l, blocktype)
+
+def fire_feet():
+    x, y, z = mc.player.getPos()
+    mc.setBlock(x+1, y, z+1, 50,1)
+    sleep(0.1)
 
 def blocks():
     print("Here are all the blocks that can be used in Minecraft Pi, remember to use the numbers!")
@@ -124,3 +137,22 @@ def blocks():
     for key,val in block_dictionary.items():
         print(key,val)
         sleep(0.1)
+
+def commands():
+    print('''
+
+Here are all the commands, and an explanation of how they work.
+===================================================================
+blocks()              Lists every block that we can use in MinecraftPi and has their blocktype (number) for reference.
+chat(msg)             Use this to send a message to the chat window.
+cube(size,blocktype)  Create a massive cube where you stand, it can be any size and made of any block.
+drop(height)          Send the player high into the sky. Just add the height in blocks.
+hollow_cube(size)     Create a huge diamond block cube, that is hollow!
+setblock(blocktype)   Change the block at your feet to any type of block, even flowing lava! Use the blocks() command to see all the blocks.
+slab(l,w,blocktype)   Create a large rectangle, sqaure slab of blocks at your feet, handy for building roads, and crushing enemies!
+teleport(x,y,z)       Send Steve to any point in the map using x,y,z co-ordinates. (Look in the top left of screen for your current co-ordinates.
+tnt_cube(size)        Make a massive cube of TNT, hit it and run away. BIG cubes can cause the Raspberry Pi to crash, so keep it less than 10x10x10.
+tnt_trail()           Have blocks of live TNT appear at your feet, then hit them and try to run away!
+===================================================================
+
+          ''')
