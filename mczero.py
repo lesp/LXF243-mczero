@@ -2,18 +2,6 @@
 Minecraft for kids aka Minecraft Zero
 Les Pounder
 """
-try:
-    from mcpi import minecraft
-    from mcpi import block
-    from time import sleep
-    mc = minecraft.Minecraft.create()
-    print("Connected to world")
-    print("For help with the block numbers, type blocks() into the Python shell")
-    chat("For help with the block numbers, type blocks() into the Python shell")
-    print("For a list of all the commands type commands()")
-except:
-    print("Connection Error, is Minecraft running?")
-
 def chat(msg):
     mc.postToChat(str(msg))
 
@@ -156,3 +144,17 @@ tnt_trail()           Have blocks of live TNT appear at your feet, then hit them
 ===================================================================
 
           ''')
+
+try:
+    from mcpi import minecraft
+    from mcpi import block
+    from time import sleep
+    mc = minecraft.Minecraft.create()
+    print("Connected to world")
+    chat("Connected to world")
+    print("For help with the block numbers, type blocks() into the Python shell")
+    chat("For help with the block numbers, type blocks() into the Python shell")
+    print("For a list of all the commands type commands() into the Python shell")
+    chat("For a list of all the commands type commands() into the Python shell")
+except:
+    print("Connection Error, is Minecraft running?")
