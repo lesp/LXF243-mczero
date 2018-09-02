@@ -6,6 +6,7 @@ Les Pounder
 def connect():
     from mcpi import minecraft
     mc = minecraft.Minecraft.create()
+    chat("Connected")
 
 def chat(msg):
     mc.postToChat(str(msg))
